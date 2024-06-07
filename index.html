@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>业务办理查询</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .teacher-list div {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+        .teacher-list div:hover {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            background-color: #FFF68F;
+        }
+        .no-result {
+            text-align: center;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>山东大学本科生院</h1>
+        <h1>业务办理查询</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="请输入业务关键词">
+        </div>
+        <div class="teacher-list" id="teacherList">
+            <div>袁凯：综合事务协调，65985，yuankai2017@sdu.edu.cn</div>
+            <div>董岳：印章、档案、设备资产管理、离退休工作，64771，dongyu@sdu.edu.cn</div>
+            <div>张玮：人事、财务，64771，zhangwei2017@sdu.edu.cn</div>
+            <div>王琳：公文流转、宣传、安全，65985，wanglinsd@sdu.edu.cn</div>
+            <div>王海静：语委、四六级考试，64814，wanghaijing@sdu.edu.cn</div>
+            <div>王振华：排课管理、转专业，64766，wzh@sdu.edu.cn</div>
+            <div>孙磊：教务系统，64766，sunnysun@sdu.edu.cn</div>
+            <div>王文菡：国内外交流、辅修学士学位、暑期学校，65098，wenhan@sdu.edu.cn</div>
+            <div>卜凡：选课管理、工作量核算、中心校区教学事务，64766，bufan@sdu.edu.cn</div>
+            <div>孟冉：成绩管理、毕业论文管理，65366，mengran@sdu.edu.cn</div>
+            <div>李静娴：学籍、学历，66086，elainelee@sdu.edu.cn</div>
+            <div>张呈民：兴隆山校区、软件园校区教学事务，58057，cmzhang@sdu.edu.cn</div>
+            <div>亓伟：校内考试、洪家楼校区教学事务，66323，qiwei@sdu.edu.cn</div>
+            <div>服务大厅：成绩证明、在读证明、学生证办理、国际学生教学事务，66826</div>
+            <div>推免、毕业审核、学位管理：65098</div>
+        </div>
+        <div class="no-result" id="noResult" style="display: none;">未找到相关业务信息</div>
+    </div>
+
+    <script>
+        function searchFunction() {
+            var input, filter, teacherList, div, i, txtValue, hasResult = false;
+            input = document.getElementById('searchInput');
+            filter = input.value.toLowerCase();
+            teacherList = document.getElementById("teacherList");
+            div = teacherList.getElementsByTagName('div');
+
+            for (i = 0; i < div.length; i++) {
+                txtValue = div[i].textContent || div[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    div[i].style.display = "";
+                    div[i].classList.add("highlight");
+                    hasResult = true;
+                } else {
+                    div[i].style.display = "none";
+                    div[i].classList.remove("highlight");
+                }
+            }
+
+            document.getElementById('noResult').style.display = hasResult ? 'none' : 'block';
+        }
+    </script>
+    <div style="text-align:center;"><p>南京大学法学院Chollima制作</p></div>
+<div style="text-align:center;"><p>版权所有 禁止用于营利目的</p></div>
+</body>
+</html>
